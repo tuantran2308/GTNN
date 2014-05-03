@@ -13,7 +13,7 @@ public class TranslatePara {
 		ArrayList<String> result = new ArrayList<String>();
 		String current = "";
 		for (int i = 0; i < paragram.length(); i++) {
-			if (paragram.charAt(i) == ' ') {
+			if (paragram.charAt(i) == ' ' || paragram.charAt(i) == '\n') {
 				if (current != "")
 					result.add(current);
 				current = "";

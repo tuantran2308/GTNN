@@ -12,6 +12,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
@@ -38,6 +41,7 @@ import javax.swing.border.TitledBorder;
 import brai.java.Communicator;
 import brai.java.Translate;
 import brai.java.TranslatePara;
+import braille.parse.ReadFromFile;
 
 public class BrailleJFrame extends JFrame {
 	/**
@@ -63,6 +67,7 @@ public class BrailleJFrame extends JFrame {
 	private int index = 0;
 	private File openFile = null;
 	private JMenuItem mntmSaveAs;
+	private JSeparator separator_2;
 	/**
 	 * Create the frame.
 	 */
@@ -100,9 +105,13 @@ public class BrailleJFrame extends JFrame {
 		});
 		
 		mntmSaveAs = new JMenuItem("Save As ...");
+		mntmSaveAs.addActionListener(new saveFileListener());
 		mntmSaveAs.setIcon(new ImageIcon(BrailleJFrame.class.getResource("/source/image/Save-icon.png")));
 		mntmSaveAs.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mnNewMenu.add(mntmSaveAs);
+		
+		separator_2 = new JSeparator();
+		mnNewMenu.add(separator_2);
 		mntmRefresh.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0));
 		mnNewMenu.add(mntmRefresh);
 		
@@ -110,6 +119,11 @@ public class BrailleJFrame extends JFrame {
 		mnNewMenu.add(separator);
 		
 		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		mntmExit.setIcon(new ImageIcon(BrailleJFrame.class.getResource("/source/image/Close-2-icon.png")));
 		mnNewMenu.add(mntmExit);
 		
@@ -310,7 +324,32 @@ public class BrailleJFrame extends JFrame {
 			if (chooseType == JFileChooser.APPROVE_OPTION) {
 				openFile = fileChooser.getSelectedFile();
 				lblStatusBar.setText("You have chosen file: " + openFile.getAbsolutePath());
+				
+				ReadFromFile readFile = new ReadFromFile(openFile.getAbsolutePath());
+				textInput.setText(readFile.getFileContents());
 			}
 		}
 	}
+	
+	private class saveFileListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String textContent = textInput.getText();
+			try {
+				File saveFile;
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.showSaveDialog(null);
+				if (fileChooser.getSelectedFile() != null) {
+					saveFile = fileChooser.getSelectedFile();
+					OutputStream os = new FileOutputStream(saveFile.getAbsolutePath());
+					PrintStream printStream = new PrintStream(os);
+					printStream.print(textContent);
+					printStream.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
 }

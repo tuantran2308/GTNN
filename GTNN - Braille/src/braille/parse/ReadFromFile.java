@@ -21,21 +21,27 @@ public class ReadFromFile {
 
 	public ReadFromFile(String path) {
 		pathFile = path;
-		File iFile = new File(path);
 		
 		String tempExtend = "";
-		int index = path.length();
+		int index = path.length() - 1;
 		while(path.charAt(index) != '.') {
-			tempExtend += path.charAt(index - 1);
+			tempExtend += path.charAt(index);
 			index--;
 		}
-		
 		String extendOfFile = "";
 		for (int i = tempExtend.length(); i > 0; i--) {
 			extendOfFile += tempExtend.charAt(i - 1); 
 		}
 		
-		System.out.println(extendOfFile);
+		if (extendOfFile.toUpperCase().equals("TXT")) {
+			readTxtFile();
+		} else if (extendOfFile.toUpperCase().equals("DOC")) {
+			readDocFile();
+		} else if (extendOfFile.toUpperCase().equals("PDF")) {
+			readPdfFile();
+		} else {
+			JOptionPane.showMessageDialog(null, "File is not support !", "Error", JOptionPane.ERROR);
+		}
 	}
 
 	public String getFileContents() {

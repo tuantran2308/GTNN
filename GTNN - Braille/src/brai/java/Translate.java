@@ -2,7 +2,7 @@ package brai.java;
 
 public class Translate {
 	String data;
-	static boolean[][] braille;
+	public boolean[][] braille;
 	public Translate() {
 		initBraille();
 	}
@@ -34,11 +34,56 @@ public class Translate {
 		braille['w'][0] = false; braille['w'][1] = true; braille['w'][2] = true; braille['w'][3] = true; braille['w'][4] = false; braille['w'][5] = true;
 		braille['x'][0] = true; braille['x'][1] = true; braille['x'][2] = false; braille['w'][3] = false; braille['w'][4] = true; braille['w'][5] = true;
 		braille['y'][0] = true; braille['y'][1] = true; braille['y'][2] = false; braille['y'][3] = true; braille['y'][4] = true; braille['y'][5] = true;
-		braille['z'][0] = true; braille['z'][1] = false; braille['z'][2] = false; braille['z'][3] = true; braille['z'][4] = true; braille['z'][5] = true;		
+		braille['z'][0] = true; braille['z'][1] = false; braille['z'][2] = false; braille['z'][3] = true; braille['z'][4] = true; braille['z'][5] = true;
+		
+		for (int i = 65; i < 91; i++) 
+			for (int j = 0; j < 6; j++) {
+				braille[i][j] = braille[i + 32][j];
+			}
+		
+		braille['!'][0] = false; braille['!'][1] = true; braille['!'][2] = true; braille['!'][3] = false; braille['!'][4] = true; braille['!'][5] = true;
+		braille['&'][0] = true; braille['&'][1] = true; braille['&'][2] = true; braille['&'][3] = false; braille['&'][4] = true; braille['&'][5] = true;
+		braille['='][0] = true; braille['='][1] = true; braille['='][2] = true; braille['='][3] = true; braille['='][4] = true; braille['='][5] = true;
+		braille['('][0] = true; braille['('][1] = false; braille['('][2] = true; braille['('][3] = true; braille['('][4] = true; braille['('][5] = true;
+		braille[')'][0] = false; braille[')'][1] = true; braille[')'][2] = true; braille[')'][3] = true; braille[')'][4] = true; braille[')'][5] = true;
+		braille['*'][0] = true; braille['*'][1] = false; braille['*'][2] = false; braille['*'][3] = false; braille['*'][4] = false; braille['*'][5] = true;
+		braille['<'][0] = true; braille['<'][1] = false; braille['<'][2] = true; braille['<'][3] = false; braille['<'][4] = false; braille['<'][5] = true;
+		braille['%'][0] = true; braille['%'][1] = true; braille['%'][2] = false; braille['%'][3] = false; braille['%'][4] = false; braille['%'][5] = true;
+		braille['?'][0] = true; braille['?'][1] = true; braille['?'][2] = false; braille['?'][3] = true; braille['?'][4] = false; braille['?'][5] = true;
+		braille[':'][0] = true; braille[':'][1] = false; braille[':'][2] = false; braille[':'][3] = true; braille[':'][4] = false; braille[':'][5] = true;
+		braille['$'][0] = true; braille['$'][1] = true; braille['$'][2] = true; braille['$'][3] = false; braille['$'][4] = false; braille['$'][5] = true;
+		braille[']'][0] = true; braille[']'][1] = true; braille[']'][2] = true; braille[']'][3] = true; braille[']'][4] = false; braille[']'][5] = true;
+		braille['\\'][0] = true; braille['\\'][1] = false; braille['\\'][2] = true; braille['\\'][3] = true; braille['\\'][4] = false; braille['\\'][5] = true;
+		braille['['][0] = false; braille['['][1] = true; braille['['][2] = true; braille['['][3] = false; braille['['][4] = false; braille['['][5] = true;
+		braille['/'][0] = false; braille['/'][1] = true; braille['/'][2] = false; braille['/'][3] = false; braille['/'][4] = true; braille['/'][5] = false;
+		braille['+'][0] = false; braille['+'][1] = true; braille['+'][2] = false; braille['+'][3] = false; braille['+'][4] = true; braille['+'][5] = true;
+		braille['#'][0] = false; braille['#'][1] = true; braille['#'][2] = false; braille['#'][3] = true; braille['#'][4] = true; braille['#'][5] = true;
+		braille['>'][0] = false; braille['>'][1] = true; braille['>'][2] = false; braille['>'][3] = true; braille['>'][4] = true; braille['>'][5] = false;
+		braille['\''][0] = false; braille['\''][1] = false; braille['\''][2] = false; braille['\''][3] = false; braille['\''][4] = true; braille['\''][5] = false;
+		braille['-'][0] = false; braille['-'][1] = false; braille['-'][2] = false; braille['-'][3] = false; braille['-'][4] = true; braille['-'][5] = true;
+		braille['@'][0] = false; braille['@'][1] = true; braille['@'][2] = false; braille['@'][3] = false; braille['@'][4] = false; braille['@'][5] = false;
+		braille['^'][0] = false; braille['^'][1] = true; braille['^'][2] = false; braille['^'][3] = true; braille['^'][4] = false; braille['^'][5] = false;
+		braille['_'][0] = false; braille['_'][1] = true; braille['_'][2] = false; braille['_'][3] = true; braille['_'][4] = false; braille['_'][5] = true;
+		braille['"'][0] = false; braille['"'][1] = false; braille['"'][2] = false; braille['"'][3] = true; braille['"'][4] = false; braille['"'][5] = false;
+		braille['^'][0] = false; braille['^'][1] = true; braille['^'][2] = false; braille['^'][3] = true; braille['^'][4] = false; braille['^'][5] = false;
+		braille['.'][0] = false; braille['.'][1] = true; braille['.'][2] = false; braille['.'][3] = false; braille['.'][4] = false; braille['.'][5] = true;
+		braille[';'][0] = false; braille[';'][1] = false; braille[';'][2] = false; braille[';'][3] = true; braille[';'][4] = false; braille[';'][5] = true;
+		braille[','][0] = false; braille[','][1] = false; braille[','][2] = false; braille[','][3] = false; braille[','][4] = false; braille[','][5] = true;
+		
+		braille['1'][0] = false; braille['1'][1] = false; braille['1'][2] = true; braille['1'][3] = false; braille['1'][4] = false; braille['1'][5] = false;
+		braille['2'][0] = false; braille['2'][1] = false; braille['2'][2] = true; braille['2'][3] = false; braille['2'][4] = true; braille['2'][5] = false;
+		braille['3'][0] = false; braille['3'][1] = false; braille['3'][2] = true; braille['3'][3] = true; braille['3'][4] = false; braille['3'][5] = false;
+		braille['4'][0] = false; braille['4'][1] = false; braille['4'][2] = true; braille['4'][3] = true; braille['4'][4] = false; braille['4'][5] = true;
+		braille['5'][0] = false; braille['5'][1] = false; braille['5'][2] = true; braille['5'][3] = false; braille['5'][4] = false; braille['5'][5] = true;
+		braille['6'][0] = false; braille['6'][1] = false; braille['6'][2] = true; braille['6'][3] = true; braille['6'][4] = true; braille['6'][5] = false;
+		braille['7'][0] = false; braille['7'][1] = false; braille['7'][2] = true; braille['7'][3] = true; braille['7'][4] = true; braille['7'][5] = true;
+		braille['8'][0] = false; braille['8'][1] = false; braille['8'][2] = true; braille['8'][3] = false; braille['8'][4] = true; braille['8'][5] = true;
+		braille['9'][0] = false; braille['9'][1] = false; braille['9'][2] = false; braille['9'][3] = true; braille['9'][4] = true; braille['9'][5] = false;
+		braille['0'][0] = false; braille['0'][1] = false; braille['0'][2] = false; braille['0'][3] = true; braille['0'][4] = true; braille['0'][5] = true;
 	}
 	
 	boolean[][] convertWord(String word){
-		boolean[][] result = new boolean[8][6];
+		boolean[][] result = new boolean[30][6];
 		for(int i = 0; i < word.length(); i++){
 			char a = word.charAt(i);
 			result[i] = addcode(a);

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="ExportLaunchConfigurations">
+		<item value="false" key="overwrite"/>
+		<item value="C:/Users/Tuan/Desktop" key="oldpath"/>
+	</section>
 	<section name="org.eclipse.debug.ui.SELECT_LAUNCH_SHORTCUT_DIALOG">
 		<item value="270" key="DIALOG_WIDTH"/>
 		<item value="435" key="DIALOG_HEIGHT"/>
